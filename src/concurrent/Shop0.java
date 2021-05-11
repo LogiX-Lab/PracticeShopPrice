@@ -4,16 +4,15 @@ import java.util.Random;
 
 /**
  * This is a shop
- * @author heju
  *
  */
-public class Shop  {
+public class Shop0  {
 	
 	// Name of the Shop
 	private String name;
 	
 	
-	public Shop(String name) {
+	public Shop0(String name) {
 		super();
 		this.name = name;
 	}
@@ -34,10 +33,8 @@ public class Shop  {
 	public String getPriceFormat(String product) {
 		System.out.println(Thread.currentThread() + "running getPriceFormat for " + this.getName());
 		Random rad = new Random();
-		
-		Discount.Code code = Discount.Code.values() [  rad.nextInt((Discount.Code.values().length)) ] ;
-		
-		return String.format("%s:%.2f:%s", this.name, this.getPrice(product), code);
+				
+		return String.format("%s:%.2f", this.name, this.getPrice(product));
 			
 	}
 		
