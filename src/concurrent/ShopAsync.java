@@ -23,8 +23,6 @@ public class ShopAsync {
 
 		return futurePrice;
 		
-		
-		
 	}
 
 	public static void main(String[] args) {

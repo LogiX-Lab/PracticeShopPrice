@@ -7,24 +7,18 @@ import java.util.Random;
  *
  */
 public class Shop0  {
-	
 	// Name of the Shop
 	private String name;
-	
-	
 	public Shop0(String name) {
 		super();
 		this.name = name;
 	}
-
 	// get the price for your producct
 	public double getPrice(String product) {
 		
 		return this.calculatePrice(product);
 	}
-	
 		
-	
 	public String getName() {
 		return name;
 	}
@@ -35,7 +29,6 @@ public class Shop0  {
 		Random rad = new Random();
 				
 		return String.format("%s:%.2f", this.name, this.getPrice(product));
-			
 	}
 		
 

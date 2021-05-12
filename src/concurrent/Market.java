@@ -14,31 +14,13 @@ public class Market {
 	public List<String> findPrices(String product) {
 		
 		
-		List< CompletableFuture<String>> futurePrices = shops.parallelStream().map(
-					shop -> CompletableFuture.supplyAsync(
-							() -> shop.getPriceFormat(product)
-							)
-				).map( futurePriceStr -> futurePriceStr.thenApply(Quote:: parse)
-							.thenCombine(
-									CompletableFuture.supplyAsync(
-											() ->  new ExchangeService().getRate(Money.USD, Money.EUR) ), 
-											(quote, rate ) -> new Quote(quote.getShopName(), quote.getPrice() * rate, quote.getDisCountCode() )
-											)
-				
-						)
-				.map ( 
-					futureQuote -> futureQuote.thenCompose(
-							quote -> CompletableFuture.supplyAsync(
-									() -> Discount.applyDiscount(quote)
-									)
-							)	
+		List< String> prices = shops.parallelStream().map(
+					shop -> shop.getPriceFormat(product)
 				)																		
 				.collect( Collectors.toList());
 		
 		
-		return futurePrices.parallelStream().map(
-					CompletableFuture::join
-				).collect(Collectors.toList());
+		return prices;
 		
 	}
 	
